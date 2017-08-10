@@ -30,9 +30,8 @@ namespace
         // Strip of all the whitespace.
         boost::trim(line);
 
-
         // Split string on the given splitter.
-        boost::split(strings, line, boost::is_any_of(splitter));
+        boost::split(strings, line, boost::is_any_of(splitter), boost::token_compress_on);
 
         return strings;
     }
