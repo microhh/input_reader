@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
         std::string data_file_name = case_name + ".data";
 
         Input input(ini_file_name);
-        // input.printItemList();
+        // input.print_itemlist();
 
         int itot = input.get_item<int>("grid", "itot");
         double xsize = input.get_item<double>("grid", "xsize");

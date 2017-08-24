@@ -6,6 +6,7 @@
 #include <vector>
 #include <map>
 #include <iostream>
+#include <iomanip>
 #include <boost/algorithm/string.hpp>
 #include "Input.h"
 #include "Convert.h"
@@ -145,6 +146,14 @@ T Input::get_item(const std::string& blockname,
 
     T item = get_item_from_stream<T>(ss);
     check_item<T>(item);
+
+    std::string itemout = "[" + blockname + "][" + itemname + "]";
+    if (!subitemname.empty())
+        itemout += "[" + subitemname + "]";
+
+    std::cout << std::left << std::setw(30) << itemout << "= " 
+        << std::right << std::setw(11) << std::setprecision(5) << std::boolalpha << item 
+        << std::endl;
 
     return item;
 }
