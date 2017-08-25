@@ -1,17 +1,16 @@
 #ifndef CONVERT
 namespace Convert
 {
+    enum class String_start { Alpha, Alphanumeric };
     template<typename T>
     inline void check_item(const T& t) {}
     
     template<>
     inline void check_item(const std::string& s)
     {
-        // Check whether string is empty or whether the first character is not alpha.
+        // Check whether string is empty.
         if (s.empty())
             throw std::runtime_error("Illegal string");
-        else if (!isalpha(s[0]))
-            throw std::runtime_error("Illegal string: " + s);
     
         // Return string if all characters are alphanumeric.
         if (find_if(s.begin(), s.end(), [](const char c) { return !std::isalnum(c); }) == s.end())

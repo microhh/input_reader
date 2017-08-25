@@ -38,6 +38,7 @@ int main(int argc, char *argv[])
         double rndampb = input.get_item<double>("fields", "rndamp", "b");
         float visc = input.get_item<float>("fields", "visc", "");
         float beta = input.get_item<float>("buffer", "beta", "", 2.);
+        std::string swspatialorder = input.get_item<std::string>("grid", "swspatialorder", "");
 
         std::cout << "itot = " << itot  << std::endl;
         std::cout << "xsize = " << xsize << std::endl;
@@ -57,6 +58,7 @@ int main(int argc, char *argv[])
         std::cout << "rndamp[b] = " << rndampb << std::endl;
         std::cout << "visc = " << visc << std::endl;
         std::cout << "beta = " << beta << std::endl;
+        std::cout << "swspatialorder = " << swspatialorder << std::endl;
 
         // Read data block.
         Data_block data_block(data_file_name);
