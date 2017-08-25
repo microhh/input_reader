@@ -135,17 +135,27 @@ void Input::print_itemlist()
                 std::cout << b.first << "," << i.first << "," << is.first << "," << is.second << ";" << std::endl;
 }
 
+namespace
+{
+    template<typename T>
+    T convert_value_to_item(const std::string& value)
+    {
+        std::istringstream ss(value);
+
+        T item = get_item_from_stream<T>(ss);
+        check_item<T>(item);
+
+        return item;
+    }
+}
+
 template<typename T>
 T Input::get_item(const std::string& blockname,
                   const std::string& itemname,
                   const std::string& subitemname)
 {
     std::string value = get_item_string(itemlist, blockname, itemname, subitemname);
-
-    std::istringstream ss(value);
-
-    T item = get_item_from_stream<T>(ss);
-    check_item<T>(item);
+    T item = convert_value_to_item<T>(value); 
 
     std::string itemout = "[" + blockname + "][" + itemname + "]";
     if (!subitemname.empty())
@@ -154,6 +164,37 @@ T Input::get_item(const std::string& blockname,
     std::cout << std::left << std::setw(30) << itemout << "= " 
         << std::right << std::setw(11) << std::setprecision(5) << std::boolalpha << item 
         << std::endl;
+
+    return item;
+}
+
+template<typename T>
+T Input::get_item(const std::string& blockname,
+                  const std::string& itemname,
+                  const std::string& subitemname,
+                  const T default_value)
+{
+    T item;
+    std::string itemqualifier;
+
+    try
+    {
+        std::string value = get_item_string(itemlist, blockname, itemname, subitemname);
+        item = convert_value_to_item<T>(value); 
+    }
+    catch (std::runtime_error& e)
+    {
+        item = default_value;
+        itemqualifier = "(default)";
+    }
+
+    std::string itemout = "[" + blockname + "][" + itemname + "]";
+    if (!subitemname.empty())
+        itemout += "[" + subitemname + "]";
+
+    std::cout << std::left << std::setw(30) << itemout << "= " 
+        << std::right << std::setw(11) << std::setprecision(5) << std::boolalpha << item 
+        << "   " << itemqualifier << std::endl;
 
     return item;
 }
@@ -185,6 +226,11 @@ template int Input::get_item<int>(const std::string&, const std::string&, const 
 template double Input::get_item<double>(const std::string&, const std::string&, const std::string&);
 template float Input::get_item<float>(const std::string&, const std::string&, const std::string&);
 template std::string Input::get_item<std::string>(const std::string&, const std::string&, const std::string&);
+
+template int Input::get_item<int>(const std::string&, const std::string&, const std::string&, const int);
+template double Input::get_item<double>(const std::string&, const std::string&, const std::string&, const double);
+template float Input::get_item<float>(const std::string&, const std::string&, const std::string&, const float);
+template std::string Input::get_item<std::string>(const std::string&, const std::string&, const std::string&, const std::string);
 
 template std::vector<int> Input::get_list<int>(const std::string&, const std::string&, const std::string&);
 template std::vector<double> Input::get_list<double>(const std::string&, const std::string&, const std::string&);
