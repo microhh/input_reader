@@ -36,6 +36,7 @@ int main(int argc, char *argv[])
         std::vector<double> xy = input.get_list<double>("cross", "xy");
         double rndamp = input.get_item<double>("fields", "rndamp");
         double rndampb = input.get_item<double>("fields", "rndamp", "b");
+        float visc = input.get_item<float>("fields", "visc");
 
         std::cout << "itot = " << itot  << std::endl;
         std::cout << "xsize = " << xsize << std::endl;
@@ -53,6 +54,7 @@ int main(int argc, char *argv[])
 
         std::cout << "rndamp = " << rndamp << std::endl;
         std::cout << "rndamp[b] = " << rndampb << std::endl;
+        std::cout << "visc = " << visc << std::endl;
 
         // Read data block.
         Data_block data_block(data_file_name);

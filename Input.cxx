@@ -183,9 +183,11 @@ std::vector<T> Input::get_list(const std::string& blockname,
 // Explicitly instantiate templates.
 template int Input::get_item<int>(const std::string&, const std::string&, const std::string&);
 template double Input::get_item<double>(const std::string&, const std::string&, const std::string&);
+template float Input::get_item<float>(const std::string&, const std::string&, const std::string&);
 template std::string Input::get_item<std::string>(const std::string&, const std::string&, const std::string&);
 
 template std::vector<int> Input::get_list<int>(const std::string&, const std::string&, const std::string&);
 template std::vector<double> Input::get_list<double>(const std::string&, const std::string&, const std::string&);
+template std::vector<float> Input::get_list<float>(const std::string&, const std::string&, const std::string&);
 template std::vector<std::string> Input::get_list<std::string>(const std::string&, const std::string&, const std::string&);
 
