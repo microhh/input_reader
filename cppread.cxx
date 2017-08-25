@@ -28,15 +28,15 @@ int main(int argc, char *argv[])
         Input input(ini_file_name);
         // input.print_itemlist();
 
-        int itot = input.get_item<int>("grid", "itot");
-        double xsize = input.get_item<double>("grid", "xsize");
-        double zsize = input.get_item<double>("grid", "zsize");
-        std::string swthermo = input.get_item<std::string>("thermo", "swthermo");
-        std::vector<std::string> crosslist = input.get_list<std::string>("cross", "crosslist");
-        std::vector<double> xy = input.get_list<double>("cross", "xy");
-        double rndamp = input.get_item<double>("fields", "rndamp");
+        int itot = input.get_item<int>("grid", "itot", "");
+        double xsize = input.get_item<double>("grid", "xsize", "");
+        double zsize = input.get_item<double>("grid", "zsize", "");
+        std::string swthermo = input.get_item<std::string>("thermo", "swthermo", "");
+        std::vector<std::string> crosslist = input.get_list<std::string>("cross", "crosslist", "");
+        std::vector<double> xy = input.get_list<double>("cross", "xy", "");
+        double rndamp = input.get_item<double>("fields", "rndamp", "");
         double rndampb = input.get_item<double>("fields", "rndamp", "b");
-        float visc = input.get_item<float>("fields", "visc");
+        float visc = input.get_item<float>("fields", "visc", "");
 
         std::cout << "itot = " << itot  << std::endl;
         std::cout << "xsize = " << xsize << std::endl;
