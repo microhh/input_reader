@@ -138,5 +138,6 @@ void Data_block::get_vector(std::vector<T>& destination,
 
 template void Data_block::get_vector(std::vector<std::string>&, const std::string&, const size_t, const size_t, const size_t);
 template void Data_block::get_vector(std::vector<double>&, const std::string&, const size_t, const size_t, const size_t);
+template void Data_block::get_vector(std::vector<float>&, const std::string&, const size_t, const size_t, const size_t);
 template void Data_block::get_vector(std::vector<int>&, const std::string&, const size_t, const size_t, const size_t);
 
