@@ -120,6 +120,12 @@ void Data_block::get_vector(std::vector<T>& destination,
 {
     if ( data_series.find(name) == data_series.end() )
     {
+        if ( (destination.size() < destination_start_index + length) )
+        {
+            std::string error_string = "Out of bounds write of vector ";
+            error_string += name;
+            throw std::runtime_error(error_string);
+        }
         std::generate(destination.begin() + destination_start_index,
                 destination.begin() + destination_start_index + length,
                 []() { return convert_from_string<T>("0"); });
