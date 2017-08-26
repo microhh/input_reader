@@ -69,6 +69,11 @@ int main(int argc, char *argv[])
         // Read data block.
         Data_block data_block(data_file_name);
 
+        // First read non-existent vector.
+        std::vector<double> zeros(4, -999);
+        data_block.get_vector(zeros, "zeros", 2, 0, 1);
+        print_vector(zeros, "zeros");
+
         std::vector<std::string> a(4);
         data_block.get_vector(a, "a", 4, 0, 0);
 
@@ -85,10 +90,13 @@ int main(int argc, char *argv[])
         data_block.get_vector(d2, "d", 2, 2, 1);
         data_block.get_vector(d2, "d", 2, 0, 3);
 
+
+
         print_vector(a, "a");
         print_vector(b, "b");
         print_vector(c, "c");
         print_vector(d1, "d1");
+        print_vector(d2, "d2");
         print_vector(d2, "d2");
 
         std::vector<double> too_short(4);
