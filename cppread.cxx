@@ -34,6 +34,7 @@ int main(int argc, char *argv[])
         std::string swthermo = input.get_item<std::string>("thermo", "swthermo", "");
         std::vector<std::string> crosslist = input.get_list<std::string>("cross", "crosslist", "");
         std::vector<double> xy = input.get_list<double>("cross", "xy", "");
+        std::vector<int> test_list = input.get_list<int>("test", "test", "", std::vector<int>({34, 45, 56}));
         double rndamp = input.get_item<double>("fields", "rndamp", "");
         double rndampb = input.get_item<double>("fields", "rndamp", "b");
         float visc = input.get_item<float>("fields", "visc", "");
@@ -47,6 +48,11 @@ int main(int argc, char *argv[])
         std::cout << "crosslist = ";
         for (std::string &s : crosslist)
             std::cout << "\"" << s << "\"" << " ";
+        std::cout << std::endl;
+
+        std::cout << "test_list = ";
+        for (const int i : test_list)
+            std::cout << i << " ";
         std::cout << std::endl;
 
         std::cout << "xy = ";
