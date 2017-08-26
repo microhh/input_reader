@@ -37,6 +37,7 @@ int main(int argc, char *argv[])
         std::vector<int> test_list = input.get_list<int>("test", "test", "", std::vector<int>({34, 45, 56}));
         double rndamp = input.get_item<double>("fields", "rndamp", "");
         double rndampb = input.get_item<double>("fields", "rndamp", "b");
+        double rndampx = input.get_item<double>("fields", "rndamp", "x");
         float visc = input.get_item<float>("fields", "visc", "");
         float beta = input.get_item<float>("buffer", "beta", "", 2.);
         std::string swspatialorder = input.get_item<std::string>("grid", "swspatialorder", "");
@@ -62,6 +63,7 @@ int main(int argc, char *argv[])
 
         std::cout << "rndamp = " << rndamp << std::endl;
         std::cout << "rndamp[b] = " << rndampb << std::endl;
+        std::cout << "rndamp[x] = " << rndampx << std::endl;
         std::cout << "visc = " << visc << std::endl;
         std::cout << "beta = " << beta << std::endl;
         std::cout << "swspatialorder = " << swspatialorder << std::endl;
